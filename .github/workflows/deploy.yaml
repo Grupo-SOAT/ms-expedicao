@@ -1,0 +1,21 @@
+
+name: Deploy Application
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy MS Expedicao
+
+    uses: Grupo-SOAT/k8s-infra-oficina-mecanica/.github/workflows/deploy-fase-4.yaml@main
+
+    with:
+      image_name: ms-expedicao
+      dockerfile: Dockerfile
+      build_context: .
+      maven_workdir: .
+      deployment_manifest: k8s/deployment-ms-expedicao.yaml
+      source_branch: main
+
+    secrets: inherit
